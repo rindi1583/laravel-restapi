@@ -10,4 +10,6 @@ class Fakultas extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $fillable = ['nama_fakultas'];
+
 }
