@@ -31,4 +31,6 @@ Route::post('fakultas/store', [FakultasController::class, 'store']);
 
 Route::post('prodi/store', [ProdiController::class, 'store']);
 
+Route::post('mahasiswa/store', [MahasiswaController::class, 'store']);
+
 Route::delete('fakultas/delete{id}', [FakultasController::class, 'destroy']);

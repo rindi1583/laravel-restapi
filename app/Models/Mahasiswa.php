@@ -21,4 +21,6 @@ class Mahasiswa extends Model
     public function fakultas(){
         return $this->belongsTo(Fakultas::class, 'fakultas_id');
     }
+
+    protected $fillable = ['npm', 'nama', 'tanggal_lahir', 'tempat_lahir', 'foto', 'prodi_id'];
 }
