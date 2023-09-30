@@ -44,4 +44,20 @@ class FakultasController extends BaseController
                 return $this->sendError('', 'Data Fakultas Gagal Dihapus', 400);
         }
     }
+
+    //mengubah
+    public function update(Request $request, $id){
+        //membuat validasi data
+        $validasi = $request->validate([
+            'nama_fakultas' => 'required|unique:fakultas'
+        ]);
+        $result = Fakultas::where('id', $id);
+        $result->update($validasi);
+        if($result){ //jika data berhasil disimpan
+            return $this->sendSuccess($result->first(), 'Fakultas berhasil diubah', 200);
+        }
+        else{ //jika data gagal disimpan
+            return $this->sendError('', 'Data gagal diubah', 400);
+        }
+    }
 }

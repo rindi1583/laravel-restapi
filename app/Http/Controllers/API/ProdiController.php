@@ -33,4 +33,31 @@ class ProdiController extends BaseController
         }
     }
 
+    public function destroy($id){
+        //
+        $prodi = Prodi::where('id',$id);
+        if($prodi->delete()){
+            return $this->sendSuccess([], 'Data Prodi Berhasil Dihapus', 303);
+        }
+        else{
+                return $this->sendError('', 'Data Prodi Gagal Dihapus', 400);
+        }
+    }
+
+    public function update(Request $request, $id){
+        //membuat validasi data
+        $validasi = $request->validate([
+            'nama_prodi' => 'required|unique:prodis',
+            'fakultas_id' => 'required'
+        ]);
+        $result = Prodi::where('id', $id)->update($validasi);
+        $result->update($validasi);
+        if($result){ //jika data berhasil disimpan
+            return $this->sendSuccess($result->first(), 'Prodi berhasil diubah', 200);
+        }
+        else{ //jika data gagal disimpan
+            return $this->sendError('', 'Prodi Data gagal diubah', 400);
+        }
+    }
+
 }
